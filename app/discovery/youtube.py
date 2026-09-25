@@ -6,18 +6,14 @@ from app.config import settings
 
 BASE = "https://www.googleapis.com/youtube/v3"
 
-<<<<<<< HEAD
 
 class YouTubeDiscoveryError(RuntimeError):
     """Safe, user-facing failure for YouTube Data API discovery."""
 
-=======
->>>>>>> origin/main
 class YouTubeDiscovery:
     def __init__(self, api_key=None):
         self.api_key = api_key or settings.youtube_api_key
         if not self.api_key:
-<<<<<<< HEAD
             raise YouTubeDiscoveryError("Live YouTube discovery needs YOUTUBE_API_KEY in .env")
 
     def _get(self, path, params):
@@ -33,16 +29,6 @@ class YouTubeDiscovery:
             raise YouTubeDiscoveryError("YouTube Data API returned an error; try again later") from exc
         except httpx.HTTPError as exc:
             raise YouTubeDiscoveryError("Could not reach the YouTube Data API; check your connection and retry") from exc
-=======
-            raise ValueError("YOUTUBE_API_KEY is required")
-
-    def _get(self, path, params):
-        params = {**params, "key": self.api_key}
-        with httpx.Client(timeout=20) as client:
-            r = client.get(f"{BASE}/{path}", params=params)
-            r.raise_for_status()
-            return r.json()
->>>>>>> origin/main
 
     def discover(self, niche="technology", limit=50, region="IN"):
         out, token = [], None

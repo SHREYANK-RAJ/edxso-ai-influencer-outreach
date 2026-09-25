@@ -20,7 +20,4 @@ class Influencer:
     filter_reasons: list[str] = field(default_factory=list)
     email_pitch: str = ""
     instagram_dm: str = ""
-<<<<<<< HEAD
     personalization_mode: str = "not_generated"
-=======
->>>>>>> origin/main

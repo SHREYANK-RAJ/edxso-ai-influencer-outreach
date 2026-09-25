@@ -1,25 +1,5 @@
 import argparse
-<<<<<<< HEAD
 from app.pipeline import run_live, run_seed, personalize_qualified, send_qualified
-=======
-import csv
-from app.models import Influencer
-from app.pipeline import run_live, personalize_qualified, send_qualified
-
-def load_seed(path="data/discovered_seed_50.csv"):
-    items=[]
-    with open(path,encoding="utf-8") as f:
-        for r in csv.DictReader(f):
-            er=r["engagement_rate"]
-            items.append(Influencer(
-                name=r["name"], platform=r["platform"], profile_url=r["profile_url"],
-                followers=int(r["followers"]) if r["followers"] else None,
-                engagement_rate=float(er.rstrip("%")) if er not in ("Not Available","") else None,
-                category=r["niche"], content_themes=[r["content_theme"]],
-                email=r["email"], geography=r["geography"], source=r["source"],
-                source_url=r["source_url"]))
-    return items
->>>>>>> origin/main
 
 def main():
     p=argparse.ArgumentParser(description="Edxso AI Influencer Outreach")
@@ -31,27 +11,16 @@ def main():
     args=p.parse_args()
 
     if args.cmd=="discover":
-<<<<<<< HEAD
         items=personalize_qualified(run_live(limit=args.limit))
         print(f"Processed {len(items)} live creators -> data/runtime_personalized.csv")
     elif args.cmd=="seed-demo":
         items=run_seed()
-=======
-        items=personalize_qualified(run_live(args.limit))
-        print(f"Processed {len(items)} live creators -> data/runtime_personalized.csv")
-    elif args.cmd=="seed-demo":
-        items=load_seed()
->>>>>>> origin/main
         items=personalize_qualified(items)
         print(f"Processed {len(items)} seed records -> data/runtime_personalized.csv")
     elif args.cmd=="personalize":
         print("Use seed-demo or discover first; personalization is integrated into those flows.")
     elif args.cmd=="send":
-<<<<<<< HEAD
         items=run_seed()
-=======
-        items=load_seed()
->>>>>>> origin/main
         items=personalize_qualified(items)
         results=send_qualified(items,dry_run=not args.real)
         print(results)
