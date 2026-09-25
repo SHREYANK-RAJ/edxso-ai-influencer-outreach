@@ -1,14 +1,20 @@
 import csv
 from dataclasses import asdict
+<<<<<<< HEAD
 from pathlib import Path
 from app.discovery.youtube import YouTubeDiscovery
 from app.filtering import qualify
 from app.models import Influencer
+=======
+from app.discovery.youtube import YouTubeDiscovery
+from app.filtering import qualify
+>>>>>>> origin/main
 from app.personalization.llm import Personalizer
 from app.sending.service import OutreachService
 from app.storage.db import OutreachDB
 from app.config import settings
 
+<<<<<<< HEAD
 ROOT_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT_DIR / "data"
 
@@ -27,6 +33,8 @@ def load_seed(path=DATA_DIR / "discovered_seed_50.csv"):
             ))
     return items
 
+=======
+>>>>>>> origin/main
 def save_csv(items, path):
     if not items: return
     rows=[]
@@ -36,6 +44,7 @@ def save_csv(items, path):
         r["recent_content"]=" | ".join(i.recent_content)
         r["filter_reasons"]="; ".join(i.filter_reasons)
         rows.append(r)
+<<<<<<< HEAD
     Path(path).parent.mkdir(parents=True, exist_ok=True)
     with open(path,"w",newline="",encoding="utf-8") as f:
         w=csv.DictWriter(f,fieldnames=rows[0].keys()); w.writeheader(); w.writerows(rows)
@@ -58,17 +67,35 @@ def run_live(query=None, limit=50):
             c.filter_reasons.append(enrichment_error)
         items.append(c)
     save_csv(items, DATA_DIR / "runtime_discovered.csv")
+=======
+    with open(path,"w",newline="",encoding="utf-8") as f:
+        w=csv.DictWriter(f,fieldnames=rows[0].keys()); w.writeheader(); w.writerows(rows)
+
+def run_live(limit=50):
+    d=YouTubeDiscovery()
+    items=[]
+    for c in d.discover(settings.target_niche,limit):
+        try: c=d.enrich_engagement(c)
+        except Exception as e: c.filter_reasons=[f"Enrichment failed: {type(e).__name__}"]
+        items.append(qualify(c))
+    save_csv(items,"data/runtime_discovered.csv")
+>>>>>>> origin/main
     return items
 
 def personalize_qualified(items):
     p=Personalizer()
     for i in items:
+<<<<<<< HEAD
         if i.qualified:
             try:
                 p.generate(i)
             except Exception as exc:
                 i.filter_reasons.append(f"Personalization failed: {type(exc).__name__}")
     save_csv(items, DATA_DIR / "runtime_personalized.csv")
+=======
+        if i.qualified: p.generate(i)
+    save_csv(items,"data/runtime_personalized.csv")
+>>>>>>> origin/main
     return items
 
 def send_qualified(items,dry_run=True):

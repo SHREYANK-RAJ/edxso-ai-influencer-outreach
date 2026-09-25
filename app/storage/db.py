@@ -1,6 +1,7 @@
 import sqlite3
 from pathlib import Path
 from datetime import datetime, timezone
+<<<<<<< HEAD
 from app.config import settings
 
 ROOT_DIR = Path(__file__).resolve().parent.parent.parent
@@ -16,6 +17,13 @@ class OutreachDB:
             path = ROOT_DIR / path
         Path(path).parent.mkdir(parents=True, exist_ok=True)
         self.path = str(path)
+=======
+
+class OutreachDB:
+    def __init__(self, path="data/outreach.db"):
+        Path(path).parent.mkdir(parents=True, exist_ok=True)
+        self.path = path
+>>>>>>> origin/main
         with sqlite3.connect(path) as c:
             c.execute("""CREATE TABLE IF NOT EXISTS outreach(
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -36,6 +44,7 @@ class OutreachDB:
                 (influencer,email,message_generated,sent,sent_at,status,provider_message_id)
                 VALUES(?,?,?,?,?,?,?)""",
                 (influencer,email,message,sent,when,status,provider_message_id))
+<<<<<<< HEAD
 
     def records(self):
         with sqlite3.connect(self.path) as c:
@@ -45,3 +54,5 @@ class OutreachDB:
                        provider_message_id
                 FROM outreach ORDER BY id DESC
             """)]
+=======
+>>>>>>> origin/main

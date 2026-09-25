@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 
+=======
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+>>>>>>> origin/main
 class Settings(BaseSettings):
     youtube_api_key: str | None = None
     groq_api_key: str | None = None
@@ -14,6 +19,10 @@ class Settings(BaseSettings):
     min_followers: int = 5000
     max_followers: int = 100000
     min_engagement_rate: float = 1.0
+<<<<<<< HEAD
     model_config = SettingsConfigDict(env_file=ROOT_DIR / ".env", extra="ignore")
+=======
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+>>>>>>> origin/main
 
 settings = Settings()

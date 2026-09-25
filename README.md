@@ -424,9 +424,13 @@ The system is designed to make outreach operations idempotent.
 
 The project includes a Streamlit dashboard for viewing the system output.
 
+<<<<<<< HEAD
 The dashboard provides controls to process the 50-record seed dataset, run live YouTube
 discovery when configured, review pass/fail results, preview personalized messages, simulate
 a selected email send, and inspect the SQLite outreach log. It also provides a simple interface for reviewing:
+=======
+The dashboard provides a simple interface for reviewing:
+>>>>>>> origin/main
 
 * Total influencer records
 * Qualified influencers
@@ -754,6 +758,7 @@ http://localhost:8501
 
 Open that URL in your browser.
 
+<<<<<<< HEAD
 ## Dashboard flow
 
 1. Open **Active filtering configuration** in the sidebar. These non-secret values are
@@ -779,6 +784,8 @@ quota and returned results. It does **not** scan every YouTube channel or the en
 database. Missing, invalid, or quota-limited API credentials show a UI error and do not
 pretend to produce live results; use the seed mode instead.
 
+=======
+>>>>>>> origin/main
 The deployed version is available at:
 
 [https://edxso-ai-influencer-outreach-3xbu7me6rhycqw9gr3uahh.streamlit.app/](https://edxso-ai-influencer-outreach-3xbu7me6rhycqw9gr3uahh.streamlit.app/)
@@ -789,6 +796,7 @@ The deployed version is available at:
 
 The project also contains a FastAPI backend.
 
+<<<<<<< HEAD
 Start the API with:
 
 ```bash
@@ -796,6 +804,9 @@ python -m uvicorn app.api:app --reload
 ```
 
 Then open `http://127.0.0.1:8000/docs` for interactive API documentation.
+=======
+The API can be started using the appropriate application server configuration.
+>>>>>>> origin/main
 
 The backend is separated from the Streamlit interface so the system can later be connected to another frontend or service.
 

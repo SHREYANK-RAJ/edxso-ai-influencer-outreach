@@ -8,3 +8,8 @@ data/*.db
 data/runtime_*.csv
 .streamlit/
 .venv/
+
+.env
+.venv/
+__pycache__/
+*.pyc
