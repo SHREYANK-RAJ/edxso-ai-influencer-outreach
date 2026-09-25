@@ -1,0 +1,15 @@
+fastapi>=0.115
+uvicorn[standard]>=0.34
+pydantic>=2.10
+pydantic-settings>=2.7
+httpx>=0.28
+python-dotenv>=1.0
+pandas>=2.2
+streamlit>=1.42
+google-api-python-client>=2.160
+google-auth-oauthlib>=1.2
+google-auth-httplib2>=0.2
+tenacity>=9.0
+beautifulsoup4>=4.13
+groq>=0.18
+pytest>=8.3

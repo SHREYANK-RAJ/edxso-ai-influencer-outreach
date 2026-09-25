@@ -1,0 +1,10 @@
+.env
+credentials.json
+token.json
+*.pyc
+__pycache__/
+.pytest_cache/
+data/*.db
+data/runtime_*.csv
+.streamlit/
+.venv/
